@@ -3,6 +3,44 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+const hideError = document.querySelector("#modal")
+hideError.classList.add("hidden")
+
+let emptyHearts = document.querySelectorAll(".like-glyph")
+
+emptyHearts.forEach((emptyHeart) => {
+  emptyHeart.addEventListener("click", () => {
+  mimicServerCall()
+  .then (() => {
+    if (emptyHeart.classList.contains("activated-heart")) {
+      emptyHeart.classList.remove("activated-heart")
+      emptyHeart.innerText = EMPTY_HEART
+    }
+    else {
+      emptyHeart.classList.add("activated-heart")
+      emptyHeart.innerText = FULL_HEART
+    }
+  })
+  .catch(() => {
+    hideError.classList.remove("hidden")
+    const errorMessage = document.querySelector("#modal-message")
+    errorMessage.innerText = "There was a server error, please try again"
+
+    setTimeout(() => hideError.classList.add("hidden"), 3000)
+    })
+})
+})
+
+
+
+
+
+
+
+
+  
+
+
 
 
 
